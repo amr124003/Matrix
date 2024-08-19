@@ -1,0 +1,162 @@
+﻿@using System.Security.Claims
+@{
+    Layout = "_Layout2";
+}
+@model List<Product>
+@if (!User.IsInRole("Admin"))
+{
+
+    <section id="portfolio" class="portfolio">
+        <div class="container" data-aos="fade-up">
+
+            @* <section class="py-5"> *@
+            <div class="row">
+                <div class="col-lg-12 d-flex justify-content-center">
+                    <ul id="portfolio-flters">
+                        <li><a style="font-weight:bold;font-size:30px" asp-action="GetAll" asp-controller="Product">All</a></li>
+                        <li><a style="font-weight:bold;font-size:30px;text-decoration:none" asp-action="GetLaptops" asp-controller="Product" >Laptops</a></li>
+                        <li><a style="font-weight:bold;font-size:30px;text-decoration:none" asp-action="GetHeadphones" asp-controller="Product">HeadPhones</a></li>
+                        <li><a style="font-weight:bold;font-size:30px;text-decoration:none" asp-action="GetPhones" asp-controller="Product">Phones</a></li>
+                        <li><a style="font-weight:bold;font-size:30px;text-decoration:none" asp-action="GetCameras" asp-controller="Product">Cameras</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="container px-4 px-lg-5 mt-5">
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content">
+                    @foreach (Product item in Model)
+                    {
+                        <div class="col mb-5">
+                            <div class="card h-100" style="width:300px">
+                                <!-- Sale badge-->
+                                <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
+                                <!-- Product image-->
+                                <a href="/Product/GetProduct/@item.Id"><img class="card-img-top" src="~/Products/@item.Image" alt="" /></a>
+                                <!-- Product details-->
+                                <div class="card-body p-4">
+                                    <div class="text-center">
+                                        <!-- Product name-->
+                                        <a asp-action="GetProduct" asp-controller="Product" asp-route-id="@item.Id" style="text-decoration:none"><h5 class="fw-bolder" style="font-weight:bold">@item.Name</h5></a>
+                                        <!-- Product reviews-->
+                                        <div class="d-flex justify-content-center small text-warning mb-2">
+                                            <div class="bi-star-fill"></div>
+                                            <div class="bi-star-fill"></div>
+                                            <div class="bi-star-fill"></div>
+                                            <div class="bi-star-fill"></div>
+                                            <div class="bi-star-fill"></div>
+                                        </div>
+                                        <!-- Product price-->
+                                        <span style="font-size:20px">@item.Price <span style="color:crimson">EGP</span> </span>
+                                    </div>
+                                </div>
+                                <!-- Product actions-->
+                                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                    <div class="text-center">
+                                        @{
+                                            string? userid = @User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+                                        }
+                                        <div class="btn-group">
+                                            <a href="/Product/GetAllAddToCart?ProId=@item.Id&ProName=@item.Name&ProImage=@item.Image&Proprice=@item.Price&Prosection=@item.Section&id=@userid" class="btn btn-primary" style="font-size:30px">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                                                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+
+                                                </svg>
+                                                Add to cart
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            </div>
+
+            @*  </section> *@
+        </div>
+    </section>
+}
+else if (User.IsInRole("Admin"))
+{
+    <section id="portfolio" class="portfolio">
+        <div class="container" data-aos="fade-up">
+
+            @* <section class="py-5"> *@
+            <div class="row">
+                <div class="col-lg-12 d-flex justify-content-center">
+                    <ul id="portfolio-flters">
+                        <li><a style="font-weight:bold;font-size:30px" asp-action="GetAll" asp-controller="Product">All</a></li>
+                        <li><a style="font-weight:bold;font-size:30px;text-decoration:none" asp-action="GetLaptops" asp-controller="Product">Laptops</a></li>
+                        <li><a style="font-weight:bold;font-size:30px;text-decoration:none" asp-action="GetHeadphones" asp-controller="Product">HeadPhones</a></li>
+                        <li><a style="font-weight:bold;font-size:30px;text-decoration:none" asp-action="GetPhones" asp-controller="Product">Phones</a></li>
+                        <li><a style="font-weight:bold;font-size:30px;text-decoration:none" asp-action="GetCameras" asp-controller="Product">Cameras</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="container px-4 px-lg-5 mt-5">
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content">
+                    @foreach (Product item in Model)
+                    {
+                        <div class="col mb-5">
+                            <div class="card h-100" style="width:300px">
+                                <!-- Sale badge-->
+                                <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
+                                <!-- Product image-->
+                                <a asp-action="GetProduct" asp-controller="Product" asp-route-id="@item.Id"><img class="card-img-top" src="~/Products/@item.Image" alt="" /></a>
+                                <!-- Product details-->
+                                <div class="card-body p-4">
+                                    <div class="text-center">
+                                        <!-- Product name-->
+                                        <a href="/Product/GetProduct/@item.Id" style="text-decoration:none"><h5 class="fw-bolder" style="font-weight:bold">@item.Name</h5></a>
+                                        <!-- Product reviews-->
+                                        <div class="d-flex justify-content-center small text-warning mb-2">
+                                            <div class="bi-star-fill"></div>
+                                            <div class="bi-star-fill"></div>
+                                            <div class="bi-star-fill"></div>
+                                            <div class="bi-star-fill"></div>
+                                            <div class="bi-star-fill"></div>
+                                        </div>
+                                        <!-- Product price-->
+                                        <span style="font-size:20px">@item.Price <span style="color:crimson">EGP</span> </span>
+                                    </div>
+                                </div>
+                                <!-- Product actions-->
+                                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                    <div class="text-center">
+                                        @{
+                                            string? userid = @User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+                                        }
+                                        <div class="btn-group">
+                                            <a href="Product/DeleteProduct/@item.Id" class="btn btn-primary" style="font-size:30px">
+                                                <i class="bi bi-trash-fill" style="padding-top:2px"></i>  Remove
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class ="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                    <div class="text-center">
+
+                                        <div class="btn-group">
+                                            <a href="Product/EditGetAll/@item.Id" class="btn btn-primary" style="font-size:30px">
+                                                <i class="bi bi-gear-wide-connected" style="padding:5px"> Edit </i>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            </div>
+
+            @*  </section> *@
+        </div>
+    </section>
+   
+
+}

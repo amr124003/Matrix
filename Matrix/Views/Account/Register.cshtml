@@ -1,0 +1,91 @@
+﻿@{
+    Layout = null;
+}
+
+@model UserVM
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Form by Colorlib</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="~/LoginAndRegister/Register/fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="~/LoginAndRegister/Register/css/style.css">
+</head>
+<body>
+
+    <div class="main">
+
+        <section class="signup">
+            <!-- <img src="~/LoginAndRegister/Register/images/signup-bg.jpg" alt=""> -->
+            <div class="container" style="width:1200px; margin-bottom:0">
+                <div class="signup-content">
+                    <form method="POST" id="signup-form" class="signup-form" asp-action="Register" asp-controller="Account">
+                        <h2 class="form-title">Create account</h2>
+                        <div asp-validation-summary="All">
+
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="Name" class="form-input"  placeholder="Your Name" />
+                            <span asp-validation-for="Name" class="text-bg-danger" style="color:red"></span>
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="Email" class="form-input"  placeholder="Your Email" />
+                            <span asp-validation-for="Email" class="text-bg-danger" style="color:red"></span>
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="PhoneNumber" class="form-input" placeholder="PhoneNumber" />
+                            <span asp-validation-for="PhoneNumber" class="text-bg-danger" style="color:red"></span>
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="Address" class="form-input" placeholder="Address" />
+                            <span asp-validation-for="Address" class="text-bg-danger" style="color:red"></span>
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="Country" class="form-input" placeholder="Country" />
+                            <span asp-validation-for="Country" class="text-bg-danger" style="color:red"></span>
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="Password" class="form-input" placeholder="Password" />
+                            <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
+                            <span asp-validation-for="Password" class="text-bg-danger" style="color:red"></span>
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="ConfirmPassword" class="form-input"  placeholder="Repeat your password" />
+
+                            <span asp-validation-for="ConfirmPassword" class="text-bg-danger" style="color:red"></span>
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="Agree" class="Agree" />
+                            <label for="Agree" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="~/LoginAndRegister/Register/#" class="term-service">Terms of service</a></label>
+                            <br />
+                            <span asp-validation-for="Agree" class="text-bg-danger" style="color:red"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" name="submit" id="submit" class="form-submit" value="Sign up" />
+                        </div>
+                    </form>
+                    <p class="loginhere">
+                        Have already an account ? <a href="/Account/Login" class="loginhere-link">Login here</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- JS -->
+    <script src="~/LoginAndRegister/Register/vendor/jquery/jquery.min.js"></script>
+    <script src="~/LoginAndRegister/Register/js/main.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

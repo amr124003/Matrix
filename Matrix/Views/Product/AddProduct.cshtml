@@ -1,0 +1,155 @@
+﻿@{
+	Layout = "AdminLayout";
+}
+
+@model Product 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Login V1</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="~/EditFrom/images/icons/favicon.ico" />
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="~/EditFrom/vendor/bootstrap/css/bootstrap.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="~/EditFrom/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="~/EditFrom/vendor/animate/animate.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="~/EditFrom/vendor/css-hamburgers/hamburgers.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="~/EditFrom/vendor/select2/select2.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="~/EditFrom/css/util.css">
+	<link rel="stylesheet" type="text/css" href="~/EditFrom/css/main.css">
+	<link rel="stylesheet" type="text/css" href="~/AddProduct/AddProduct.css" />
+	<!--===============================================================================================-->
+
+</head>
+<body>
+
+	<div class="limiter">
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<div class="container-login100">
+			
+			<div class="wrap-login100">
+				<form class="login100-form validate-form" asp-action="AddProduct" asp-controller="Product" method="post" style="width:1000px">
+				
+				<div class="image-preview-container" style="width:28%">
+					<div class="preview">
+						<img id="preview-selected-image" />
+					</div>
+					<label for="file-upload">Upload Image</label>
+					<input type="file" id="file-upload" accept="image/*" onchange="previewImage(event);" asp-for="Image"/>
+				</div>
+				<div>
+						<span asp-validation-for="Image" class="text-danger" style="font-weight:bold;font-size:15px"></span>
+				</div>
+					<span class="login100-form-title">
+						Add Product
+					</span>
+
+					@* <input type="file" multiple="false" accept="image/*" id=finput onchange="upload()" asp-for="Image"> *@
+
+					<div class="wrap-input100 validate-input">
+
+						<input class="input100" asp-for="Name" placeholder="Name" >
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-unlock" aria-hidden="true"></i>
+						</span>
+					</div>
+					<div>
+						<span asp-validation-for="Name" class="text-danger" style="font-weight:bold;font-size:15px"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" >
+
+						<input class="input100" asp-for="Price" placeholder="Price">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-unlock" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div>
+						<span asp-validation-for="Price" class="text-danger" style="font-weight:bold;font-size:15px"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input">
+
+						<input class="input100" asp-for="Section" placeholder="Product Section" >
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-unlock" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div>
+						<span asp-validation-for="Section" class="text-danger" style="font-weight:bold;font-size:15px"></span>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn" type="submit">
+							Add
+						</button>
+					</div>
+			
+		   </form>
+		  </div>
+			
+		</div>
+	</div>
+
+
+
+
+	<!--===============================================================================================-->
+	<script src="~/EditFrom/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="~/EditFrom/vendor/bootstrap/js/popper.js"></script>
+	<script src="~/EditFrom/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="https://www.dukelearntoprogram.com/course1/common/js/image/SimpleImage.js"></script>
+	<script src="~/EditFrom/vendor/select2/select2.min.js"></script>
+	<!--===============================================================================================-->
+	<script>
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+	<!--===============================================================================================-->
+	 <script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+	<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+	<!--===============================================================================================-->
+	<script>
+		const previewImage = (event) => {
+			
+			const imageFiles = event.target.files;
+		
+			const imageFilesLength = imageFiles.length;
+			
+			if (imageFilesLength > 0) {
+				
+				const imageSrc = URL.createObjectURL(imageFiles[0]);
+				
+				const imagePreviewElement = document.querySelector("#preview-selected-image");
+				
+				imagePreviewElement.src = imageSrc;
+				
+				imagePreviewElement.style.display = "block";
+			}
+		};
+	</script>
+	<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
+</body>
+</html>

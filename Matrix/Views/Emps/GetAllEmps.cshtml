@@ -1,0 +1,63 @@
+﻿@{
+    Layout = "AdminLayout";
+}
+
+@model List<SectionStaff>
+
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+@* <link rel="stylesheet" href="~/Emps/Emps.css" /> *@
+
+<div class="container">
+    <div class="mt-5">
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        @foreach (var item in Model)
+        {
+        <div class="d-style btn btn-brc-tp border-2 bgc-white btn-outline-blue btn-h-outline-blue btn-a-outline-blue w-100 my-2 py-3 shadow-sm">
+            <!-- Basic Plan -->
+             <div class="row align-items-center">
+                 <div class="col-12 col-md-4">
+                     <h3 class="pt-3 text-170 text-600 text-primary-d1 letter-spacing">
+                         @item.EmpName
+                     </h3>
+
+                        <div class="text-secondary-d1 text-120" style="font-weight:bold;color:blue;font-size:20px">
+                         <span class="ml-n15 align-text-bottom">@item.SectionName</span>
+                     </div>
+                 </div>
+
+                 <ul class="list-unstyled mb-0 col-12 col-md-4 text-dark-l1 text-90 text-left my-4 my-md-0">
+                     <li>
+                         <i class="fa fa-check text-success-m2 text-110 mr-2 mt-1"></i>
+                         <span>
+                          <span class="text-110" style="font-weight:bold">Registered</span>
+                         </span>
+                     </li>
+
+                     <li class="mt-25">
+                         <i class="fa fa-check text-success-m2 text-110 mr-2 mt-1"></i>
+                         <span class="text-110" style="font-weight:bold">
+                             Hard Work
+                         </span>
+                     </li>
+
+                     <li class="mt-25">
+                            <i class="fa fa-check text-success-m2 text-110 mr-2 mt-1"></i>
+                            <span class="text-110" style="font-weight:bold">
+                             Meduim Experience in @item.SectionName
+                         </span>
+                     </li>
+                 </ul>
+
+                 <div class="col-12 col-md-4 text-center">
+                  <a asp-action="Profile" asp-controller="Emps" asp-route-id="@item.Id" class="f-n-hover btn btn-info btn-raised px-4 py-25 w-75 text-600">Edit Data</a>
+                 </div>
+             </div>
+        </div>
+        }
+    </div>
+</div>

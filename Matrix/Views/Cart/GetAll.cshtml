@@ -1,0 +1,151 @@
+﻿@{
+    Layout = null;
+}
+@model List<CartItem>
+<html>
+    <head>
+        <link href="~/assets/css/Cart.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+<body style="background-color:bisque" id="InnerPlace">
+
+    
+    <div class="card" >
+        
+     
+        <div class="row" >
+           
+            <div class="col-md-8 cart">
+                <div class="title">
+                    <div class="row">
+                        <div class="col"><h4><b>Shopping Cart</b></h4></div>
+                        <div class="col align-self-center text-right text-muted">
+                            <div class="qty" style="
+                                 position: absolute;
+                                 right: 38px;
+                                 top: -31px;
+                                 width: 53px;
+                                 height: 50px;
+                                 line-height: 42px;
+                                 text-align: center;
+                                 border-radius: 50%;
+                                 font-size: 26px;
+                                 color: #FFF;
+                                 background-color: #D10024;">
+                                @ViewBag.SUM
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @{
+                    decimal Total = 0;
+                   
+                }
+                @foreach(CartItem item in Model)
+               {
+                   <div class="row border-top border-bottom">
+                       <div class="row main align-items-center">
+                           <div class="col-2"><img class="img-fluid" src="~/Products/@item.Image"></div>
+                           <div class="col">
+                               <div class="row text-muted">@item.Section</div>
+                               <div class="row">@item.Name</div>
+                           </div>
+                           <div class="col">
+                                @{
+                                    Total += item.Price * (int)item.Quantity;
+
+                                }
+                               <div style="display:flex">
+                                    <a href="#" class="btn-dark" style="font-size:20px;margin-right:5px;border-radius:5px;text-decoration:none" onclick="Minus(@item.Id)">-</a>
+                                    <span style="background-color:dodgerblue;border:1px solid black;border-radius:5px;font-size:20px" >
+                                        <span style="margin-left:5px;margin-right:5px;" id="blabla">@item.Quantity</span></span>
+                                    <a href="#" class="btn-dark" style="font-size:20px;margin-left:5px;border-radius:5px;text-decoration:none"onclick="Increase(@item.Id)">+</a>
+                              </div>
+                                    
+                                
+                                @{
+                                    decimal itemtotalprice = item.Price * item.Quantity;
+                                   
+                                }
+                              
+                           </div>
+                            <div class="col" style="font-size:20px">@itemtotalprice<span style="color:crimson;font-weight:bold">EGP</span></div>
+                          
+                            <div>
+
+                                <a asp-action="Remove" asp-controller="Cart" asp-route-id="@item.Id" onclick="return confirm('Are You Sure To Delete This Item From Your Cart ?')">
+                                    <svg width="40" height="40" viewbox="0 0 40 40"><path d="M 10,10 L 30,30 M 30,10 L 10,30" stroke="black" stroke-width="4" /></svg>
+                                </a>
+                            </div>
+
+                           
+                       </div>
+                     
+                   </div>
+               }
+              
+                @{
+                    string? Id = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                }
+                <div class="back-to-shop"><a href="/Product/GetAll" style="text-decoration:none">&leftarrow;<span class="text-muted">Back to shop</span></a></div>
+            </div>
+            <div class="col-md-4 summary">
+                <div><h5><b>Summary</b></h5></div>
+                <hr>
+                <div class="row">
+                    <div class="col" style="margin-left:2px;font-size:20px"> ITEMS @ViewBag.SUM</div>
+                    
+                </div>
+
+                <div style="text-align:center">
+                    <hr />
+                        <div  style="font-size:20px"><span style="font-weight:bold;font-size:20px;padding-right:30px;padding-left:0px">Total Price : </span> @Total <span style="color:crimson;font-weight:bold">EGP</span></div>
+                </div>
+                <hr />
+                <a class="btn-primary" style="font-size:20px;text-decoration:none; padding:3px;" asp-action="CheckOut" asp-controller="Cart" asp-route-id="@Id" asp-route-items="@ViewBag.SUM" asp-route-Total="@Total"
+                   onclick="return confirm('Are You Sure Of Check Out?')">Check Out</a>
+            </div> 
+        </div>    
+      
+
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+   <script> 
+        function Increase(id) {
+            event.preventDefault();
+            $.ajax(
+               {
+                    url: "/Cart/Increaseitem/"+id,
+                    success: function (result) { 
+                        document.getElementById("InnerPlace").innerHTML = result;
+                    }
+               }   
+
+            )
+        }
+        function Minus(id)
+        {
+            event.preventDefault();
+            $.ajax(
+                {
+                    url: "/Cart/minusitem/"+id,
+                    success:function(result)
+                    {
+                        document.getElementById("InnerPlace").innerHTML = result;
+                    }
+                }
+            )
+        }
+   </script>
+
+</body>
+
+
+</html>
+
+

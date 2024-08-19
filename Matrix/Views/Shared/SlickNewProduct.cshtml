@@ -1,0 +1,115 @@
+﻿
+@using System.Security.Claims
+@model List<Product>
+
+@if (!User.IsInRole("Admin"))
+{
+
+
+<div class="row" style="width:180rem;margin-left:-243px;padding-left:-99px;text-align:center;">
+    <div class="products-tabs">
+        <!-- tab -->
+        <div id="tab1" class="tab-pane active">
+            <div class="products-slick" data-nav="#slick-nav-1">
+                <!-- product -->
+                   
+                @foreach (Product item in Model)
+                {
+                    <div class="product">
+                    <div class="product-img">
+                        <img src="~/Products/@item.Image" alt="Will Not Show">
+                        <div class="product-label">
+                            <span class="sale">-30%</span>
+                            <span class="new">NEW</span>
+                        </div>
+                    </div>
+                        @{
+                            decimal newprice = item.Price - 100;
+                        }
+                    <div class="product-body">
+                        <p class="product-category">@item.Section</p>
+                        <h3 class="product-name"><a href="#">@item.Name</a></h3>
+                            <h4 class="product-price">@item.Price <del class="product-old-price">@newprice</del></h4>
+                        <div class="product-rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>-
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <div class="product-btns">
+                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                        </div>
+                    </div>
+                        @{
+                            string? userid = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;                    
+                        }
+                    <div class="add-to-cart">
+                            <a class="add-to-cart-btn" style="padding-top:10px;padding-bottom:10px;font-size:17px"
+                            href="/Product/GetAllAddToCart?ProId=@item.Id&ProName=@item.Name&ProImage=@item.Image&Proprice=@item.Price&Prosection=@item.Section&id=@userid"><i class="fa fa-shopping-cart"></i> add to cart</a>
+                    </div>
+                </div>
+                }
+                <!-- /product -->
+            </div>
+            <div id="slick-nav-1" class="products-slick-nav"></div>
+        </div>
+        <!-- /tab -->
+    </div>
+</div>
+}
+else if (User.IsInRole("Admin"))
+{
+    <div class="row" style="width:180rem;margin-left:-243px;padding-left:-99px;text-align:center;">
+        <div class="products-tabs">
+            <!-- tab -->
+            <div id="tab1" class="tab-pane active">
+                <div class="products-slick" data-nav="#slick-nav-1">
+                   
+                    <!-- product -->
+                    @foreach (Product item in Model)
+                    {
+                        <div class="product">
+                            <div class="product-img">
+                                <img src="~/Products/@item.Image" alt="Will Not Show">
+                                <div class="product-label">
+                                    <span class="sale">-30%</span>
+                                    <span class="new">NEW</span>
+                                </div>
+                            </div>
+                            @{
+                                decimal newprice = item.Price * (30 / 100);
+                            }
+                            <div class="product-body">
+                                <p class="product-category">@item.Section</p>
+                                <h3 class="product-name"><a href="#">@item.Name</a></h3>
+                                <h4 class="product-price">@item.Price <del class="product-old-price">@newprice</del></h4>
+                                <div class="product-rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <div class="product-btns">
+                                    <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                                </div>
+                            </div>
+                            @{
+                                string? userid = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                            }
+                            <div class="add-to-cart">
+                                <a class="add-to-cart-btn" style="padding-top:10px;padding-bottom:10px;font-size:20px;text-align:center" href="/Product/DeleteProduct/@item.Id">
+                                    <i class="bi bi-trash-fill" style="padding-top:2px"></i>  Remove
+                                </a>
+                            </div>
+                        </div>
+                    }
+                    <!-- /product -->
+                </div>
+                <div id="slick-nav-1" class="products-slick-nav"></div>
+            </div>
+            <!-- /tab -->
+        </div>
+    </div>
+}

@@ -1,0 +1,23 @@
+﻿@{
+    Layout = null;
+}
+
+<html>
+<head>
+    <link href="~/RoleStyle/RoleStyle.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="login">
+        <div style="width:300px;height:300px">
+            <h1>Edit Product</h1>
+            <form method="get" asp-action="Edit" asp-controller="Product">
+                <input  placeholder="Enter Product Id"  required />
+                <button type="submit" class="btn btn-primary btn-block btn-large">Go To Edit</button>
+            </form>
+        </div>
+    </div>
+</body>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+</html>

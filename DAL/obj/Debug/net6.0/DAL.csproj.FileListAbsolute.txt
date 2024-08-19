@@ -1,0 +1,24 @@
+E:\Proiect\Matrix\DAL\bin\Debug\net6.0\DAL.deps.json
+E:\Proiect\Matrix\DAL\bin\Debug\net6.0\DAL.dll
+E:\Proiect\Matrix\DAL\bin\Debug\net6.0\DAL.pdb
+E:\Proiect\Matrix\DAL\obj\Debug\net6.0\DAL.csproj.AssemblyReference.cache
+E:\Proiect\Matrix\DAL\obj\Debug\net6.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+E:\Proiect\Matrix\DAL\obj\Debug\net6.0\DAL.AssemblyInfoInputs.cache
+E:\Proiect\Matrix\DAL\obj\Debug\net6.0\DAL.AssemblyInfo.cs
+E:\Proiect\Matrix\DAL\obj\Debug\net6.0\DAL.csproj.CoreCompileInputs.cache
+E:\Proiect\Matrix\DAL\obj\Debug\net6.0\DAL.dll
+E:\Proiect\Matrix\DAL\obj\Debug\net6.0\refint\DAL.dll
+E:\Proiect\Matrix\DAL\obj\Debug\net6.0\DAL.pdb
+E:\Proiect\Matrix\DAL\obj\Debug\net6.0\ref\DAL.dll
+E:\C# Training\Matrix\DAL\bin\Debug\net6.0\DAL.deps.json
+E:\C# Training\Matrix\DAL\bin\Debug\net6.0\DAL.dll
+E:\C# Training\Matrix\DAL\bin\Debug\net6.0\DAL.pdb
+E:\C# Training\Matrix\DAL\obj\Debug\net6.0\DAL.csproj.AssemblyReference.cache
+E:\C# Training\Matrix\DAL\obj\Debug\net6.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+E:\C# Training\Matrix\DAL\obj\Debug\net6.0\DAL.AssemblyInfoInputs.cache
+E:\C# Training\Matrix\DAL\obj\Debug\net6.0\DAL.AssemblyInfo.cs
+E:\C# Training\Matrix\DAL\obj\Debug\net6.0\DAL.csproj.CoreCompileInputs.cache
+E:\C# Training\Matrix\DAL\obj\Debug\net6.0\DAL.dll
+E:\C# Training\Matrix\DAL\obj\Debug\net6.0\refint\DAL.dll
+E:\C# Training\Matrix\DAL\obj\Debug\net6.0\DAL.pdb
+E:\C# Training\Matrix\DAL\obj\Debug\net6.0\ref\DAL.dll

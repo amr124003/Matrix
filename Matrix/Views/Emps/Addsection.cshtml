@@ -1,0 +1,24 @@
+﻿@{
+    Layout = null;
+}
+@model Sections
+<html>
+<head>
+    <link href="~/RoleStyle/RoleStyle.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="login">
+        <div style="width:300px;height:300px">
+            <h1>Add Section</h1>
+            <form method="post" asp-action="AddSection" asp-controller="Emps">
+                <input placeholder="Section Name" required="required" asp-for="Name" />
+                <span asp-validation-for="Name" class="text-bg-danger" style="color:red"> </span>
+                <button type="submit" class="btn btn-primary btn-block btn-large">Add Section</button>
+            </form>
+        </div>
+    </div>
+</body>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+</html>

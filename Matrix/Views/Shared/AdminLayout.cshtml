@@ -1,0 +1,294 @@
+﻿@using System.Security.Claims
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Matrix Electronic Shop</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="~/assets/img/favicon.png" rel="icon">
+  <link href="~/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="~/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="~/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="~/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="~/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="~/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="~/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="~/assets/css/style.css" rel="stylesheet">
+  <link href="~/assets2/css/style.css" rel="stylesheet">
+  <link href="~/assets2/css/slick-theme.css" rel="stylesheet" />
+  <link href="~/assets2/css/slick.css" rel="stylesheet" />
+  <link href="~/assets2/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="~/assets2/css/font-awesome.min.css" rel="stylesheet" />
+  <link href="~/assets2/css/nouislider.min.css" rel="stylesheet" />
+  <link href="~/assets2/css/" rel="stylesheet" />
+  <link href="~/assets2/" rel="stylesheet" />
+  
+
+  <!-- =======================================================
+  * Template Name: Techie
+  * Updated: Jan 29 2024 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/techie-free-skin-bootstrap-3/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top ">
+    <div class="container d-flex align-items-center justify-content-between">
+      <h1 class="logo" style="position:absolute; font-weight:bold; left:20px;"><a asp-action="GetAll" asp-controller="Product" h5 class="fw-bolder" style="text-decoration:none"><span style="color:red">爪</span>卂ㄒ尺丨乂</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo"><img src="~/assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar " style="padding-left:350px">
+        <ul style="padding-left:-200px">
+          <li><a class="nav-link scrollto active" href="#hero" style="font-size:30px;text-decoration:none">Home</a></li>
+          <li><a class="nav-link scrollto" href="#about"  style="font-size:30px;text-decoration:none">About</a></li>
+          <li><a class="nav-link scrollto" href="#services"  style="font-size:30px;text-decoration:none">Services</a></li>
+          <li><a class="nav-link scrollto " href="#portfolio"  style="font-size:30px;text-decoration:none">Portfolio</a></li>
+                    @{
+                        string? id = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                    }
+              
+           @if(User.IsInRole("Admin"))
+                   {
+              <li class="dropdown">
+                  <a href="#"><span style="font-size:30px;text-decoration:none">Admin</span> <i class="bi bi-chevron-down" style="font-size:30px"></i></a>
+                       <ul>
+                      <li><a asp-action="Profile" asp-controller="Account" asp-route-UserId="@id" style="text-decoration:none">Profile</a></li>
+                      <li class="dropdown">
+                          <a href="#" style="text-decoration:none"><span>Features</span> <i class="bi bi-chevron-right"></i></a>
+                          <ul>
+                             <li><a href="/Role/New"style="text-decoration:none">Add Role</a></li>
+                              <li><a href="/Account/AddAdmin"style="text-decoration:none">Add Admin</a></li>
+                              <li><a href="/Product/EditButton"style="text-decoration:none">Edit Product</a></li>
+                              <li><a href="/Product/AddProduct"style="text-decoration:none">Add Product</a></li>
+                              <li><a href="/Product/DeleteButton"style="text-decoration:none">Delete Product</a></li>
+                              <li><a href="/Emps/GetAllEmps"style="text-decoration:none">YourTeam</a></li>
+                              <li><a href="/Emps/Profilebutton"style="text-decoration:none">Get Employee</a></li>
+                              <li><a href="/Emps/Deletebutton"style="text-decoration:none">Delete Employee</a></li>
+                              <li><a href="/Emps/GetAllSection"style="text-decoration:none">Get Your Sections</a></li>
+                              <li><a href="/Emps/AddSection"style="text-decoration:none">Add Section</a></li>
+                              <li><a href="/Emps/DeleteSecButton"style="text-decoration:none">Delete Section</a></li>
+                          </ul>
+                      </li>
+                  </ul>
+                 
+              </li>
+          
+            }
+          
+           @if(User.IsInRole("Customer"))
+           {
+             <li><a class="nav-link scrollto" asp-action="Register" asp-controller="Account" style="font-size:30px;text-decoration:none">Register</a></li>
+             <li><a class="nav-link scrollto" asp-action="Login" asp-controller="Account" style="font-size:30px;text-decoration:none">Log in</a></li>
+           }
+           else
+           {
+               <li><a class="nav-link scrollto" asp-action="Logout" asp-controller="Account" style="font-size:30px;text-decoration:none">Log Out</a></li>
+           }
+           @{
+               string? USerid = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+           }
+            @if(User.IsInRole("Customer"))
+           {
+               <a asp-action="Profile" asp-controller="Account" asp-route-UserId="@USerid" style="font-size:20px;text-decoration:none">
+                   <svg class="feather feather-user" fill="none" stroke="currentColor"
+                   stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
+                   width="30" height="30" xmlns="http://www.w3.org/2000/svg">
+                       <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                       <circle cx="12" cy="7" r="4" />
+                   </svg>  @User.Identity?.Name
+               </a>
+           }
+
+            @if (User.IsInRole("User"))
+                    {
+                        <li><a class="nav-link scrollto" href="#contact" style="text-decoration:none">Contact</a></li>
+                    }
+           <li>
+               @if (User.IsInRole("User"))
+               {
+                    
+                   <a style="color:#fff;text-decoration:none" aria-expanded="true" asp-action="GetAll" asp-route-id="@id" asp-controller="Cart" >
+                       <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                           <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+
+                       </svg>
+                       @if (ViewBag.CartCount > 0  && !User.IsInRole("Admin"))
+                       {
+                           <div class="qty" style="position: absolute;
+                               right: -5px;
+                               top: -8px;
+                               width: 20px;
+                               height: 20px;
+                               line-height: 20px;
+                               text-align: center;
+                               border-radius: 50%;
+                               font-size: 10px;
+                               color: #FFF;
+                               background-color: #D10024;">
+                               @ViewBag.CartCount
+                           </div>
+
+                       }
+
+
+                   </a>
+               }
+           </li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+   
+        <div class="pb-3">
+            @RenderBody()
+        </div>
+   
+
+  
+
+ 
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>Matrix</h3>
+            <p>
+              First Sea Street <br>
+              Mahalet-Ziad-Samanoud-Elgharbia<br>
+              United States <br><br>
+              <strong>Phone:</strong><span style="font-weight:bold;color:white">+20</span> 102 065 2199<br>
+              <strong>Email:</strong>amrsoliman124003@gmail.com<br>
+            </p>
+          </div>
+
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Phone Soft</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Computer assembly</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">}Computer maintenance</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Phones</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Cameras</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-4 col-md-6 footer-newsletter">
+            <h4>Join Our Newsletter</h4>
+            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+            <form action="" method="post">
+              <input type="email" name="email"><input type="submit" value="Subscribe">
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="copyright-wrap d-md-flex py-4">
+        <div class="me-md-auto text-center text-md-start">
+          <div class="copyright">
+            &copy; Copyright <strong><span>Techie</span></strong>. All Rights Reserved
+          </div>
+          <div class="credits">
+            <!-- All the links in the footer should remain intact. -->
+            <!-- You can delete the links only if you purchased the pro version. -->
+            <!-- Licensing information: https://bootstrapmade.com/license/ -->
+            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/techie-free-skin-bootstrap-3/ -->
+            Designed by <a href="https://www.facebook.com/amr.soliman.7712" style="font-weight:bold">Amr Soliman Mahmoud Gada</a>
+          </div>
+        </div>
+        <div class="social-links text-center text-md-right pt-3 pt-md-0">
+          <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+          <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+          <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+          <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+          <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  
+
+  <!-- Vendor JS Files -->
+      <script src="~/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+      <script src="~/assets/vendor/aos/aos.js"></script>
+      <script src="~/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <script src="~/assets/vendor/glightbox/js/glightbox.min.js"></script>
+      <script src="~/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+      <script src="~/assets/vendor/swiper/swiper-bundle.min.js"></script>
+      <script src="~/assets/vendor/php-email-form/validate.js"></script>
+
+    <script src="~/assets2/js/jquery.min.js"></script>
+    <script src="~/assets2/js/bootstrap.min.js"></script>
+    <script src="~/assets2/js/slick.min.js"></script>
+    <script src="~/assets2/js/nouislider.min.js"></script>
+    <script src="~/assets2/js/jquery.zoom.min.js"></script>
+    <script src="~/assets2/js/main.js"></script>
+
+  
+	
+
+  <!-- Template Main JS File -->
+  <script src="~/assets/js/main.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+
+</html>
+
+
+
+
+
+
+  <?xml version="1.0" ?><svg class="feather feather-user" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+
+
+ 
